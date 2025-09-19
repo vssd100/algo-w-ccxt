@@ -21,29 +21,10 @@ class DataHandling:
         return ohlc
 
     def DataPreparation(self, ohlc):
-        fvg = smc.fvg(ohlc, join_consecutive=False)
-        swing_highs_lows = smc.swing_highs_lows(ohlc, swing_length=50)
-        bos_choch = smc.bos_choch(ohlc, swing_highs_lows, close_break=True)
-        order_blocks = smc.ob(ohlc, swing_highs_lows, close_mitigation=False)
-        liquidity = smc.liquidity(ohlc, swing_highs_lows, range_percent=0.01)
-        previous_highs_lows = smc.previous_high_low(ohlc, time_frame="15m")
-        retracements = smc.retracements(ohlc, swing_highs_lows)
-        merged_df = pd.concat([fvg, swing_highs_lows, bos_choch, order_blocks, liquidity, previous_highs_lows, retracements], axis=1)
 
-        merged_df.fillna(0, inplace=True)
-
-        merged_df.reset_index(inplace=True)
-        ohlc.reset_index(inplace=True)
-        df = pd.concat([ohlc, merged_df], axis=1)
 
         def CalculatePoints(row):
-            points = 0
-            points += 1 if row['FVG'] == 1 else -1 if row['FVG'] == -1 else 0
-            points += 1 if row['BOS'] == 1 else -1 if row['BOS'] == -1 else 0
-            points += -1 if row['CHOCH'] == 1 else -1 if row['CHOCH'] == -1 else 0
-            points += 1 if row['OB'] == 1 else -1 if row['OB'] == -1 else 0
-            points += 1 if row['Liquidity'] == 1 else -1 if row['Liquidity'] == -1 else 0
-            points += 1 if row['Direction'] == 1 else -1 if row['Direction'] == -1 else 0
+
             return points
 
         df['Points'] = df.apply(CalculatePoints, axis=1)
