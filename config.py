@@ -1,0 +1,4 @@
+API_KEY = "m2e2k3LCL40URGDFz4jvFnaOhcL2tKx5zEslYBbl45wwwRSZQusyZDHuxzlQ6tEU"
+API_SECRET = "fbtfo4TOYalZh5fttYkKHgSeHtinpSLKVIUGRbN4oy1uwdXCt7qkdSixDtQwt07D"
+URL_WEBHOOK = "https://discord.com/api/webhooks/1418659583483973764/97VGjGS6wXzf1_JDF4UIA1ibzfLGLuS2dvs5adCrWY_2kSarSQtKuyUCkMx8p9M2qj5b"
+
